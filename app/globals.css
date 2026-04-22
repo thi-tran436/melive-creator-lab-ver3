@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --pink: #FF2E63;
+  --electric: #08D9D6;
+  --yellow: #FFD369;
+  --ink: #0F0F12;
+  --cream: #FBF7F0;
+  --purple: #7B2FF7;
+  --soft: #F3EEE5;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+a {
+  color: inherit;
+}
+
+/* Marquee scroll animation */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee-scroll 30s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Pulse dot */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.pulse-dot {
+  animation: pulse-dot 1.8s infinite;
+}
+
+/* Success modal pop */
+@keyframes modal-pop {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.modal-pop {
+  animation: modal-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* FAQ transition */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, margin-top 0.35s ease;
+}
+
+.faq-answer.open {
+  max-height: 600px;
+  margin-top: 14px;
+}
+
+/* Form field focus ring */
+.field-input {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  padding: 14px 16px;
+  border: 2px solid rgba(0,0,0,0.1);
+  border-radius: 12px;
+  background: #fff;
+  transition: border-color 0.2s;
+  width: 100%;
+  outline: none;
+}
+
+.field-input:focus {
+  border-color: var(--pink);
+}
+
+.field-input.error {
+  border-color: var(--pink);
+}
+
+.field-input.valid {
+  border-color: var(--electric);
+}
+
+/* Checkbox grid custom styling */
+.category-checkbox:checked + .category-label,
+.category-label:has(input:checked) {
+  border-color: var(--pink);
+  background: #fff5f8;
+}
